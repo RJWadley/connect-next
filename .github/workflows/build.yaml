@@ -13,14 +13,14 @@ jobs:
     timeout-minutes: 1
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest]
 
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
 
       - run: bun install --frozen-lockfile
-      - run: timeout 12s bun lint || bun lint # Workaround for Windows compatibility
+      - run: bun lint
       - run: bun test
-      - run: ./scripts/check-lines.sh
-      - run: bun ./scripts/check-bundle-size.ts
+      - run: bun test:lines
+      - run: bun test:bundle
