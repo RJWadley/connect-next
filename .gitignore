@@ -38,3 +38,8 @@ next-env.d.ts
 # wrangler files
 .wrangler
 .dev.vars
+
+# ignored lockfiles
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

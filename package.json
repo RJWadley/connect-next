@@ -10,7 +10,8 @@
     "pages:build": "bunx @cloudflare/next-on-pages",
     "preview": "bun pages:build && wrangler pages dev",
     "deploy": "bun pages:build && wrangler pages deploy",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts"
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv env.d.ts",
+    "preinstall": "npx only-allow bun"
   },
   "dependencies": {
     "react": "^18",
