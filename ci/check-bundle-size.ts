@@ -4,7 +4,7 @@
 
 import { $, Glob } from "bun";
 
-const buildOutput = $`bun run build`.lines();
+const buildOutput = $`bun run build --no-lint`.lines();
 const extractSizeRegex = /([.\d]+) ([kbmg]?B)/;
 let isFinished = false;
 let sizeInBytes = 0;
