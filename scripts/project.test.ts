@@ -1,4 +1,5 @@
 import { expect, test } from "bun:test";
+import { $ } from "bun";
 import project from "../package.json" assert { type: "json" };
 
 /**
@@ -14,13 +15,13 @@ const depDocs: Record<string, string> = {
 	...project["//devDependencies"],
 };
 
+for (const dep of Object.keys(depDocs)) {
+	test(`${dep} shouldn't be documented unnecessarily`, () => {
+		expect(deps[dep]).toBeTruthy();
+	});
+}
 for (const dep of Object.keys(deps)) {
 	test(`dependency ${dep} should be documented`, () => {
 		expect(depDocs[dep]).toBeTruthy();
-	});
-}
-for (const dep of Object.keys(depDocs)) {
-	test(`documented dependency ${dep} should be in dependencies`, () => {
-		expect(deps[dep]).toBeTruthy();
 	});
 }

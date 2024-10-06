@@ -38,8 +38,9 @@ for await (const file of allAssets.scan(".next/static")) {
 	sizeInBytes += Number.parseInt(size);
 }
 // worth noting it doesn't really make sense to include the public folder in the size -
-// but that's how the comma repo does it, so we'll do the same for the sake of comparison
+// but that's how the comma repo does it, so we'll do the same for the sake of comparison where possible
 for await (const file of allAssets.scan("public")) {
+	if (file.startsWith("pwa")) continue; // skip pwa assets, since they're not part of the load
 	const size = await $`gzip -c public/${file} | wc -c`.text();
 	sizeInBytes += Number.parseInt(size);
 }
