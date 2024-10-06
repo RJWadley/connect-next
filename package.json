@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev",
+		"dev": "next dev --turbo",
 		"build": "next build",
 		"start": "next start",
 		"lint": "biome check",
@@ -26,10 +26,24 @@
 		"@types/bun": "^1.1.10",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
-		"postcss": "^8",
 		"tailwindcss": "^3.4.13",
 		"typescript": "^5",
-		"vercel": "^37.6.1",
 		"wrangler": "^3.80.0"
+	},
+	"//dependencies": {
+		"react": "ui framework",
+		"react-dom": "ui framework",
+		"next": "react metaframework"
+	},
+	"//devDependencies": {
+		"@biomejs/biome": "very fast linting & formatting",
+		"@cloudflare/next-on-pages": "cloudflare support",
+		"@cloudflare/workers-types": "cloudflare support",
+		"@types/bun": "types for bun, our testing framework",
+		"@types/react": "types for react - see dependencies",
+		"@types/react-dom": "types for react - see dependencies",
+		"tailwindcss": "css framework",
+		"typescript": "javascript with types",
+		"wrangler": "cloudflare tooling"
 	}
 }
