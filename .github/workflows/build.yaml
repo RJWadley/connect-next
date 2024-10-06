@@ -16,7 +16,7 @@ jobs:
       - uses: oven-sh/setup-bun@v1
 
       - run: bun install --frozen-lockfile
-      - run: timeout 12s bun pre-commit
+      - run: timeout 12s bun lint
       - run: bun run test
       - run: ./ci/check-lines.sh
       - run: bun ./ci/check-bundle-size.ts
