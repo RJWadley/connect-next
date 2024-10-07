@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
 
+export const runtime = "edge";
+
 export default function Home() {
 	const token = cookies().get("comma_token")?.value;
 

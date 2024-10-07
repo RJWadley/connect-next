@@ -1,4 +1,4 @@
-import { appleDeviceSpecsForLaunchImages } from "pwa-asset-generator";
+import appleDeviceSpecsForLaunchImages from "pwa-asset-generator/dist/config/apple-fallback-data.json";
 import { Fragment } from "react";
 
 export function ManifestAssets() {
