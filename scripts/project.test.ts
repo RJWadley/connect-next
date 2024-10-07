@@ -16,7 +16,7 @@ const depDocs: Record<string, string> = {
 };
 
 for (const dep of Object.keys(depDocs)) {
-	test(`${dep} shouldn't be documented unnecessarily`, () => {
+	test(`${dep} shouldn't be documented if not used`, () => {
 		expect(deps[dep]).toBeTruthy();
 	});
 }

@@ -6,11 +6,10 @@ export function ManifestAssets() {
 		<>
 			<link rel="apple-touch-icon" href="/pwa/apple-icon-180.png" />
 			<meta name="apple-mobile-web-app-capable" content="yes" />
+			<meta name="mobile-web-app-capable" content="yes" />
 			{appleDeviceSpecsForLaunchImages.map((spec) => {
 				return (
-					<Fragment
-						key={`apple-splash-${spec.portrait.width}-${spec.portrait.height}`}
-					>
+					<Fragment key={`apple-splash-${spec.device}`}>
 						{/* light mode */}
 						<link
 							rel="apple-touch-startup-image"

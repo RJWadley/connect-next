@@ -6,8 +6,7 @@
 		"dev": "next dev --turbo",
 		"build": "next build",
 		"start": "next start",
-		"lint": "biome check",
-		"lint-fix": "biome check --write",
+		"lint": "biome check --write",
 		"pages:build": "bunx @cloudflare/next-on-pages",
 		"preview": "bun pages:build && wrangler pages dev",
 		"deploy": "bun pages:build && wrangler pages deploy",
@@ -21,7 +20,8 @@
 		"next": "14.2.14",
 		"pwa-asset-generator": "^6.3.2",
 		"react": "^18",
-		"react-dom": "^18"
+		"react-dom": "^18",
+		"zod": "^3.23.8"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.3",
@@ -38,7 +38,8 @@
 		"react": "ui framework",
 		"pwa-asset-generator": "primarily to generate assets for safari",
 		"react-dom": "ui framework",
-		"next": "react metaframework"
+		"next": "react metaframework",
+		"zod": "API response validation"
 	},
 	"//devDependencies": {
 		"@biomejs/biome": "very fast linting & formatting",
