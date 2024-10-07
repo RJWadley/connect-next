@@ -3,6 +3,7 @@ import {
 	QueryClient,
 	dehydrate,
 } from "@tanstack/react-query";
+import { redirect } from "next/navigation";
 import { getAccessToken } from "./(api)/auth/tokens";
 import { getProfile } from "./(api)/profile";
 import { WhoAmI } from "./components/WhoAmI";
@@ -32,10 +33,6 @@ export default async function Home() {
 		);
 	}
 
-	return (
-		<div>
-			<p>You are not logged in!</p>
-			<a href="/auth/login">Sign in</a>
-		</div>
-	);
+	// we don't seem to be logged in
+	redirect("/auth/login");
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import clsx from "clsx";
 import { TanstackProvider } from "./TanstackProvider";
 import { ManifestAssets } from "./assets/pwa";
 
@@ -17,9 +18,15 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		// capsize needs text sizing context
+		<html lang="en" className="font-sans text-base leading-none">
 			<ManifestAssets />
-			<body className={inter.className}>
+			<body
+				className={clsx(
+					"bg-white text-black dark:bg-black dark:text-white",
+					inter.className,
+				)}
+			>
 				<TanstackProvider>{children}</TanstackProvider>
 			</body>
 		</html>

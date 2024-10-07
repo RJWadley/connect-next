@@ -19,11 +19,13 @@
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.59.0",
+		"clsx": "^2.1.1",
 		"js-cookie": "^3.0.5",
 		"next": "14.2.14",
 		"pwa-asset-generator": "^6.3.2",
 		"react": "^18",
 		"react-dom": "^18",
+		"tailwindcss-capsize": "^3.0.5",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
@@ -40,11 +42,13 @@
 	},
 	"//dependencies": {
 		"@tanstack/react-query": "reliable data fetching for react",
+		"clsx": "tiny utility for css classes",
 		"js-cookie": "tiny cookie library",
+		"next": "react metaframework",
 		"react": "ui framework",
 		"pwa-asset-generator": "primarily to generate assets for safari",
 		"react-dom": "ui framework",
-		"next": "react metaframework",
+		"tailwindcss-capsize": "adjust text spacing for perfect vertical centering",
 		"zod": "API response validation"
 	},
 	"//devDependencies": {
