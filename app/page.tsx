@@ -1,19 +1,34 @@
-import { cookies } from "next/headers";
+import {
+	HydrationBoundary,
+	QueryClient,
+	dehydrate,
+} from "@tanstack/react-query";
+import { getAccessToken } from "./(api)/auth/tokens";
+import { getProfile } from "./(api)/profile";
 import { WhoAmI } from "./components/WhoAmI";
 
 export const runtime = "edge";
 
-export default function Home() {
-	const token = cookies().get("comma_token")?.value;
+export default async function Home() {
+	// if we're logged in, prefetch data we need on every page
+	const queryClient = new QueryClient();
+	const accessToken = await getAccessToken();
+	if (accessToken) {
+		await queryClient.prefetchQuery({
+			queryKey: ["getMe"],
+			queryFn: getProfile,
+		});
+	}
 
-	if (token) {
+	if (accessToken) {
 		return (
-			<div>
-				<p>You are logged in!</p>
-				<p>Your access token is: {token}</p>
-				<WhoAmI />
-				<a href="/auth/logout">Sign out</a>
-			</div>
+			<HydrationBoundary state={dehydrate(queryClient)}>
+				<div>
+					<p>You are logged in!</p>
+					<WhoAmI />
+					<a href="/auth/logout">Sign out</a>
+				</div>
+			</HydrationBoundary>
 		);
 	}
 

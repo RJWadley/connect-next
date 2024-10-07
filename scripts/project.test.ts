@@ -1,5 +1,4 @@
 import { expect, test } from "bun:test";
-import { $ } from "bun";
 import project from "../package.json" assert { type: "json" };
 
 /**

@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import {
-	HydrationBoundary,
-	QueryClient,
-	dehydrate,
-} from "@tanstack/react-query";
-import { getProfile } from "./(api)/profile";
-import { getAccessToken } from "./(api)/auth/tokens";
 import { TanstackProvider } from "./TanstackProvider";
 import { ManifestAssets } from "./assets/pwa";
 
@@ -23,25 +16,11 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	// if we're logged in, prefetch data we need on every page
-	const queryClient = new QueryClient();
-	const accessToken = await getAccessToken();
-	if (accessToken) {
-		await queryClient.prefetchQuery({
-			queryKey: ["getMe"],
-			queryFn: getProfile,
-		});
-	}
-
 	return (
 		<html lang="en">
 			<ManifestAssets />
 			<body className={inter.className}>
-				<TanstackProvider>
-					<HydrationBoundary state={dehydrate(queryClient)}>
-						{children}
-					</HydrationBoundary>
-				</TanstackProvider>
+				<TanstackProvider>{children}</TanstackProvider>
 			</body>
 		</html>
 	);
