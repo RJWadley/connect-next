@@ -1,4 +1,5 @@
 import { cookies } from "next/headers";
+import { WhoAmI } from "./components/WhoAmI";
 
 export const runtime = "edge";
 
@@ -10,6 +11,7 @@ export default function Home() {
 			<div>
 				<p>You are logged in!</p>
 				<p>Your access token is: {token}</p>
+				<WhoAmI />
 				<a href="/auth/logout">Sign out</a>
 			</div>
 		);

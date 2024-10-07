@@ -14,9 +14,12 @@
 		"preinstall": "npx only-allow bun",
 		"test:lint": "biome check",
 		"test:lines": "scripts/check-lines.sh",
-		"test:bundle": "bun scripts/check-bundle-size.ts"
+		"test:bundle": "bun scripts/check-bundle-size.ts",
+		"test:all": "bun lint && bun test && bun test:lines && bun test:bundle"
 	},
 	"dependencies": {
+		"@tanstack/react-query": "^5.59.0",
+		"js-cookie": "^3.0.5",
 		"next": "14.2.14",
 		"pwa-asset-generator": "^6.3.2",
 		"react": "^18",
@@ -28,6 +31,7 @@
 		"@cloudflare/next-on-pages": "1",
 		"@cloudflare/workers-types": "^4.20241004.0",
 		"@types/bun": "^1.1.10",
+		"@types/js-cookie": "^3.0.6",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
 		"tailwindcss": "^3.4.13",
@@ -35,6 +39,8 @@
 		"wrangler": "^3.80.0"
 	},
 	"//dependencies": {
+		"@tanstack/react-query": "reliable data fetching for react",
+		"js-cookie": "tiny cookie library",
 		"react": "ui framework",
 		"pwa-asset-generator": "primarily to generate assets for safari",
 		"react-dom": "ui framework",
@@ -46,6 +52,7 @@
 		"@cloudflare/next-on-pages": "cloudflare support",
 		"@cloudflare/workers-types": "cloudflare support",
 		"@types/bun": "types for bun, our testing framework",
+		"@types/js-cookie": "types for js-cookie - see dependencies",
 		"@types/react": "types for react - see dependencies",
 		"@types/react-dom": "types for react - see dependencies",
 		"tailwindcss": "css framework",

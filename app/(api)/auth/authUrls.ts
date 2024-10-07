@@ -1,5 +1,5 @@
-import { BASE_URL } from "./config";
-import { getService } from "./config";
+import { BASE_URL } from "../config";
+import { getService } from "../config";
 
 function stringify(obj: Record<string, string>): string {
 	return new URLSearchParams(obj).toString();

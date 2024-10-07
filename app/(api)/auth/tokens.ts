@@ -1,5 +1,7 @@
+import Cookies from "js-cookie";
 import { z } from "zod";
-import { BASE_URL } from "./config";
+import { BASE_URL } from "../config";
+const headers = typeof window === "undefined" ? import("next/headers") : null;
 
 const schema = z.object({
 	access_token: z.string(),
@@ -22,3 +24,11 @@ export async function createAccessToken(code: string, provider: string) {
 
 	return json.access_token;
 }
+
+export const getAccessToken = async () => {
+	if (headers) {
+		const { cookies } = await headers;
+		return cookies().get("comma_token")?.value;
+	}
+	return Cookies.get("comma_token");
+};
