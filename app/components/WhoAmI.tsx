@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { getProfile } from "../(api)/account";
+import { getProfile } from "../(api)/profile";
 
 export function WhoAmI() {
 	const { data: me } = useQuery({

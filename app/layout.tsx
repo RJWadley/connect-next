@@ -6,7 +6,7 @@ import {
 	QueryClient,
 	dehydrate,
 } from "@tanstack/react-query";
-import { getProfile } from "./(api)/account";
+import { getProfile } from "./(api)/profile";
 import { getAccessToken } from "./(api)/auth/tokens";
 import { TanstackProvider } from "./TanstackProvider";
 import { ManifestAssets } from "./assets/pwa";
