@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
-import { TanstackProvider } from "./TanstackProvider";
-import { ManifestAssets } from "./assets/pwa";
+import { ManifestAssets } from "./components/ManifestAssets";
+import { TanstackProvider } from "./components/TanstackProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +23,7 @@ export default async function RootLayout({
 			<ManifestAssets />
 			<body
 				className={clsx(
-					"bg-white text-black dark:bg-black dark:text-white",
+					"bg-white text-black border-black dark:bg-black dark:text-white dark:border-white",
 					inter.className,
 				)}
 			>

@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 * {
+	border-color: inherit;
 	/* need this so that fonts match figma */
 	text-rendering: geometricprecision;
 	-webkit-font-smoothing: antialiased;

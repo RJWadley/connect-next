@@ -49,12 +49,13 @@ const sizeInKB = sizeInBytes / 1024;
 console.log(`Bundle size is ${Math.round(sizeInKB)} KB`);
 
 // check if the bundle size is within the expected range
-if (sizeInKB < 200) {
+// these limits are lower than comma's
+if (sizeInKB < 90) {
 	console.log("Bundle size lower than expected, let's lower the limit!");
 	process.exit(0); // TODO - this should be a non-zero exit code
 }
 
-if (sizeInKB > 325) {
+if (sizeInKB > 150) {
 	console.log("Exceeded bundle size limit!");
 	process.exit(1);
 }

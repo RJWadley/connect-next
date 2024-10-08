@@ -1,9 +1,11 @@
 import clsx from "clsx";
 
 const variants = {
-	accent: "bg-green text-black",
-	primary: "bg-black text-white dark:bg-white dark:text-black",
-	secondary: "bg-white text-black dark:bg-black dark:text-white border",
+	accent: "bg-green-400 text-black border-black hover:bg-green-500",
+	primary:
+		"bg-black text-white border-white dark:bg-white dark:text-black dark:border-black hover:bg-gray-900 dark:hover:bg-gray-100",
+	secondary:
+		"bg-white text-black dark:bg-black dark:text-white outline outline-1 hover:bg-gray-100 dark:hover:bg-gray-900",
 };
 
 export default function Button({
@@ -20,21 +22,22 @@ export default function Button({
 	return (
 		<a
 			href={href}
-			className={clsx("grid grid-cols-[3.825rem_1fr]", variants[variant])}
+			className={clsx("flex items-center transition-colors", variants[variant])}
 		>
 			{icon ? (
 				<div
-					className={
-						"aspect-square grid place-items-center border-r place-self-stretch"
-					}
+					// 3.825rem is the height of the button without an icon
+					// if I could auto calc this I would but it's non-trivial
+					className="size-[3.825rem] grid place-items-center border-r shrink-0"
 				>
 					{icon}
 				</div>
 			) : null}
 			<div
 				className={clsx(
-					"p-6 capsize text-lg font-extrabold uppercase",
-					!icon && "text-center col-span-2",
+					"w-full text-lg font-extrabold uppercase capsize p-6",
+					// 5.325 is the width of the icon + p-6
+					icon ? "sm:pr-[5.325rem] sm:text-center" : "text-center",
 				)}
 			>
 				{children}

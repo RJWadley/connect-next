@@ -41,14 +41,14 @@
 		"wrangler": "^3.80.0"
 	},
 	"//dependencies": {
-		"@tanstack/react-query": "reliable data fetching for react",
-		"clsx": "tiny utility for css classes",
-		"js-cookie": "tiny cookie library",
-		"next": "react metaframework",
+		"@tanstack/react-query": "easy & robust client-side data fetching for react",
+		"clsx": "utility for conditional css classes",
+		"js-cookie": "work with cookies on the client",
+		"next": "routing & server rendering",
 		"react": "ui framework",
-		"pwa-asset-generator": "primarily to generate assets for safari",
+		"pwa-asset-generator": "generate icons and splash screens",
 		"react-dom": "ui framework",
-		"tailwindcss-capsize": "adjust text spacing for perfect vertical centering",
+		"tailwindcss-capsize": "adjusts text spacing for perfect vertical centering of text",
 		"zod": "API response validation"
 	},
 	"//devDependencies": {

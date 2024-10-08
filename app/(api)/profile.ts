@@ -16,5 +16,5 @@ export const getProfile = async () => {
 		},
 	}).then((res) => res.json());
 
-	return profileSchema.safeParse(response);
+	return profileSchema.parse(response);
 };
