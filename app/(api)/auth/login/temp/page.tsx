@@ -20,7 +20,7 @@ export default function TempLogin() {
 				<input
 					type="text"
 					name="code"
-					className="p-6 border"
+					className="p-6 border dark:text-black"
 					onChange={(e) => Cookies.set("comma_token", e.target.value.trim())}
 				/>
 			</label>
