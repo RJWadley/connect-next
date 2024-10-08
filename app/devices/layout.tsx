@@ -12,6 +12,8 @@ import HeaderSidebar from "~/components/HeaderSidebar";
 import { WhoAmI } from "~/components/WhoAmI";
 import DeviceList from "./DeviceList";
 
+export const runtime = "edge";
+
 export default async function DeviceLayout({
 	children,
 }: { children: React.ReactNode }) {
