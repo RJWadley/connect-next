@@ -19,9 +19,13 @@ export default function Button({
 	variant?: keyof typeof variants;
 	icon?: React.ReactNode;
 }) {
+	const external = !href?.startsWith("/");
+
 	return (
 		<a
 			href={href}
+			rel={external ? "noreferrer noopener" : ""}
+			target={external ? "_blank" : ""}
 			className={clsx("flex items-center transition-colors", variants[variant])}
 		>
 			{icon ? (
