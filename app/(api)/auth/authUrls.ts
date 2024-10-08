@@ -16,6 +16,8 @@ const GOOGLE_OAUTH_PARAMS = {
 };
 
 export function getGoogleAuthUrl(): string {
+	if (getService() !== "localhost:3000") return "/auth/login/temp";
+
 	const params = {
 		...GOOGLE_OAUTH_PARAMS,
 		state: `service,${getService()}`,
@@ -31,6 +33,8 @@ const APPLE_OAUTH_PARAMS = {
 	scope: "name email",
 };
 export function getAppleAuthUrl(): string {
+	if (getService() !== "localhost:3000") return "/auth/login/temp";
+
 	const params = {
 		...APPLE_OAUTH_PARAMS,
 		state: `service,${getService()}`,
@@ -44,6 +48,8 @@ const GITHUB_OAUTH_PARAMS = {
 	scope: "read:user",
 };
 export function getGitHubAuthUrl(): string {
+	if (getService() !== "localhost:3000") return "/auth/login/temp";
+
 	const params = {
 		...GITHUB_OAUTH_PARAMS,
 		state: `service,${getService()}`,
