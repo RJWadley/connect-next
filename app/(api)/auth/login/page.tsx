@@ -69,7 +69,7 @@ export default async function Login() {
 			>
 				Sign in with GitHub
 			</Button>
-			<Button variant="secondary" href="/auth/demo">
+			<Button variant="accent" href="/auth/demo">
 				Try the demo
 			</Button>
 		</div>

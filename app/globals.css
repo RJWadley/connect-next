@@ -8,3 +8,31 @@
 	text-rendering: geometricprecision;
 	-webkit-font-smoothing: antialiased;
 }
+
+.rtl {
+	direction: rtl;
+
+	& > * {
+		direction: ltr;
+	}
+}
+
+.no-scrollbar::-webkit-scrollbar {
+	background-color: transparent;
+	width: 1px;
+	height: 1px;
+}
+
+.no-scrollbar::-webkit-scrollbar-thumb {
+	background-color: transparent;
+	width: 1px;
+	height: 1px;
+}
+
+/* only set scrollbar width if webkit scrollbar is not supported */
+/* setting both results in a visible scrollbar on some devices */
+@supports not selector(::-webkit-scrollbar-thumb) {
+	.no-scrollbar {
+		scrollbar-width: none;
+	}
+}

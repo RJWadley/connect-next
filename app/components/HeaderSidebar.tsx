@@ -19,54 +19,63 @@ export default function HeaderSidebar({
 	children: React.ReactNode;
 	sidebar: React.ReactNode;
 }) {
-	const [open, setOpen] = useState(false);
 	const sidebarRef = useRef<HTMLDivElement>(null);
+	const wrapperRef = useRef<HTMLDivElement>(null);
+
+	const openSidebar = () => {
+		if (!wrapperRef.current) return;
+
+		// this is processed before our click event, so we can always scroll to open
+		const { scrollWidth, offsetWidth } = wrapperRef.current;
+		wrapperRef.current.scrollTo({
+			left: offsetWidth - scrollWidth,
+			behavior: "smooth",
+		});
+	};
 
 	// if the click is outside the sidebar, close it
+	// a click on the menu button will also trigger this
 	useEventListener("click", (e) => {
 		if (
-			open &&
+			wrapperRef.current &&
+			wrapperRef.current.scrollLeft < 0 &&
 			e.target instanceof Element &&
 			!sidebarRef.current?.contains(e.target)
-		)
-			setOpen(false);
+		) {
+			wrapperRef.current?.scrollTo({
+				left: 0,
+				behavior: "smooth",
+			});
+		}
 	});
 
 	return (
-		<div className="w-full overflow-x-clip">
+		<div
+			// rtl lets the sidebar default to closed
+			className="w-dvw h-dvh overflow-x-auto flex snap-x snap-mandatory rtl no-scrollbar"
+			ref={wrapperRef}
+		>
+			<div className="w-screen shrink-0 snap-start overflow-y-scroll md:w-full md:shrink">
+				<div className="p-6 flex border-b w-full items-center gap-5">
+					<button
+						type="button"
+						onClick={openSidebar}
+						aria-label="Toggle sidebar"
+						className="size-6 flex flex-col justify-around items-center md:hidden"
+					>
+						<div className="h-px w-5 bg-white" />
+						<div className="h-px w-5 bg-white" />
+						<div className="h-px w-5 bg-white" />
+					</button>
+					<div className="text-xl font-extrabold capsize">COMMA CONNECT</div>
+				</div>
+				<div>{children}</div>
+			</div>
 			<div
-				className={clsx(
-					"flex w-[180vw] transition-transform duration-300 md:w-full",
-					!open && "translate-x-[-80vw] md:translate-x-0",
-				)}
+				className="border-r w-[80vw] shrink-0 h-full overflow-y-scroll snap-start md:w-auto"
+				ref={sidebarRef}
 			>
-				<div
-					className="shrink-0 border-r w-[80vw] h-dvh overflow-y-scroll md:w-auto"
-					ref={sidebarRef}
-				>
-					{sidebar}
-				</div>
-				<div
-					className={clsx(
-						"transition-transform duration-300 border m-[-1px]",
-						open &&
-							"scale-95 translate-x-6 opacity-90 md:scale-100 md:translate-x-0 md:opacity-100",
-					)}
-				>
-					<div className="p-6 flex border-b w-screen">
-						<button
-							type="button"
-							onClick={() => startTransition(() => setOpen(!open))}
-							aria-label="Toggle sidebar"
-							className="size-6 flex flex-col justify-around items-center md:hidden"
-						>
-							<div className="h-px w-5 bg-white" />
-							<div className="h-px w-5 bg-white" />
-							<div className="h-px w-5 bg-white" />
-						</button>
-					</div>
-					<div>{children}</div>
-				</div>
+				{sidebar}
 			</div>
 		</div>
 	);

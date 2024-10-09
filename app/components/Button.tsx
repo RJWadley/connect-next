@@ -25,13 +25,12 @@ export default function Button({
 		<a
 			href={href}
 			rel={external ? "noreferrer noopener" : ""}
-			target={external ? "_blank" : ""}
 			className={clsx("flex items-center transition-colors", variants[variant])}
 		>
 			{icon ? (
 				<div
 					// 3.825rem is the height of the button without an icon
-					// if I could auto calc this I would but it's non-trivial
+					// if I could auto calc this I would but it's fairly non-trivial
 					className="size-[3.825rem] grid place-items-center border-r shrink-0"
 				>
 					{icon}
