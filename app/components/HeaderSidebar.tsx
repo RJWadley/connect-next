@@ -1,7 +1,5 @@
 "use client";
-
-import clsx from "clsx";
-import { startTransition, useRef, useState } from "react";
+import { useRef } from "react";
 import { useEventListener } from "~/utils/useEventListener";
 
 /**
