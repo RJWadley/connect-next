@@ -1,7 +1,7 @@
 import {
-	dehydrate,
 	HydrationBoundary,
 	QueryClient,
+	dehydrate,
 } from "@tanstack/react-query";
 import { getDevice } from "~/(api)/devices";
 import { getRoutes } from "~/(api)/segments";

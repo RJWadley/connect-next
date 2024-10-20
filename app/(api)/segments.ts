@@ -1,6 +1,6 @@
+import { z } from "zod";
 import { getAccessToken } from "./auth/tokens";
 import { BASE_URL } from "./config";
-import { z } from "zod";
 
 export const eventSchema = z.array(
 	z.union([
@@ -102,7 +102,7 @@ const getEnrichedRouteData = async (
 	const endTime = route.end_time_utc_millis;
 	const events = (await Promise.all(eventsRequest)).flat().map((event) => ({
 		...event,
-		// note: time from the event is in nanoseconds since... something...
+		// note: event time field is in nanoseconds since... something...
 		// much easier to just do the math to get milliseconds
 		time: startTime + event.route_offset_millis,
 	}));
