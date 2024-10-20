@@ -2,12 +2,13 @@ import { z } from "zod";
 import { getAccessToken } from "./auth/tokens";
 import { BASE_URL } from "./config";
 
-const deviceSchema = z.object({
+// strict object until i'm certain this is the correct schema
+const deviceSchema = z.strictObject({
 	alias: z.string().nullable(),
 	athena_host: z.string().nullable(),
 	device_type: z.string(),
 	dongle_id: z.string(),
-	eligible_features: z.object({
+	eligible_features: z.strictObject({
 		nav: z.boolean(),
 		prime: z.boolean(),
 		prime_data: z.boolean(),
@@ -29,6 +30,7 @@ const deviceSchema = z.object({
 	sim_id: z.string(),
 	sim_type: z.number(),
 	trial_claimed: z.boolean(),
+	public_key: z.string(),
 });
 
 const devicesSchema = z.array(deviceSchema);
@@ -36,6 +38,15 @@ const devicesSchema = z.array(deviceSchema);
 export type Device = z.infer<typeof deviceSchema> & {
 	is_online: boolean;
 };
+
+const isDeviceOnline = (fetchedAt: number, lastPing: number | null) =>
+	lastPing // this could be null or 0
+		? Date.now() -
+				fetchedAt -
+				// last ping is in seconds
+				lastPing * 1000 <
+			2 * 60 * 1000
+		: false;
 
 const sortDevices = (devices: Device[]) =>
 	devices.sort((a, b) => {
@@ -52,7 +63,7 @@ const sortDevices = (devices: Device[]) =>
 	});
 
 export const getDevice = async (dongleId: string) => {
-	const response = fetch(`${BASE_URL}/v1.1/devices/${dongleId}/`, {
+	const response = await fetch(`${BASE_URL}/v1.1/devices/${dongleId}/`, {
 		headers: {
 			Authorization: `JWT ${await getAccessToken()}`,
 		},
@@ -75,9 +86,7 @@ export const getDevices = async () => {
 		devices.map((device) => ({
 			...device,
 			// device is online if the last ping was less than 2 minutes ago
-			is_online: device.last_athena_ping
-				? Date.now() - fetchedAt - device.last_athena_ping < 2 * 60 * 1000
-				: false,
+			is_online: isDeviceOnline(fetchedAt, device.last_athena_ping),
 		})),
 	);
 };

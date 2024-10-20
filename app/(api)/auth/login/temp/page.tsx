@@ -9,8 +9,9 @@ export default function TempLogin() {
 			<h1 className="text-lg font-semibold">Temporary Token Page</h1>
 			<p>Looks like you're on a cloudflare deploy preview.</p>
 			<p>
-				Comma currently doesn't have any public auth system yet, so it's not
-				possible to directly log in on cloudflare yet.
+				This domain is probably not whitelisted for comma authentication. As a
+				workaround for now, get a token from comma's JWT portal and paste it
+				here.
 			</p>
 			<Button variant="secondary" href="https://jwt.comma.ai">
 				Get a token from comma

@@ -18,21 +18,21 @@ export default async function DeviceLayout({
 	children,
 }: { children: React.ReactNode }) {
 	const token = await getAccessToken();
-	if (!token) redirect("/login");
+	if (!token) redirect("/auth/login");
 
 	const client = new QueryClient();
 
 	// prefetch any queries we'll need on this page
-	const a = client.prefetchQuery({
-		queryKey: ["getDevices"],
-		queryFn: getDevices,
-	});
-	const b = client.prefetchQuery({
-		queryKey: ["getProfile"],
-		queryFn: getProfile,
-	});
-
-	await Promise.all([a, b]);
+	await Promise.all([
+		client.prefetchQuery({
+			queryKey: ["getDevices"],
+			queryFn: getDevices,
+		}),
+		client.prefetchQuery({
+			queryKey: ["getProfile"],
+			queryFn: getProfile,
+		}),
+	]);
 
 	return (
 		<HydrationBoundary state={dehydrate(client)}>
