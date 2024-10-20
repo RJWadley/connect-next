@@ -113,18 +113,20 @@ const getEnrichedRouteData = async (
 			percent: roundToNearest(
 				((s.time - startTime) / (endTime - startTime)) * 100,
 				// at a certain point, small differences are imperceptible and just take up characters
-				2,
+				100,
 			),
 			state: s.data.state,
 		}))
-		// filter out duplicate states - only keep the earliest
-		// filter in two stages - first duplicate percents (~ same time), then duplicate states
+		// filter out duplicate states
+		// filter in two stages - first duplicate percents, then duplicate states
 		// if we tried to do this all at once, they'd interfere
 		.filter((state, index, all) => {
-			const prev = all[index - 1];
-			return prev?.percent !== state.percent;
+			// for state changes that occur at the same time, we want the latest one
+			const next = all[index + 1];
+			return next?.percent !== state.percent;
 		})
 		.filter((state, index, all) => {
+			// for duplicate state changes, (i.e. enabled -> enabled) we want the earliest one
 			const prev = all[index - 1];
 			return prev?.state !== state.state;
 		});
