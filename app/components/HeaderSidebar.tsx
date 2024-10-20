@@ -1,6 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { useEventListener } from "~/utils/useEventListener";
+import { DisplayDate } from "./DateDisplay";
 
 /**
  * the main view of comma connect is:
@@ -65,7 +66,24 @@ export default function HeaderSidebar({
 						<div className="h-px w-5 bg-white" />
 						<div className="h-px w-5 bg-white" />
 					</button>
-					<div className="text-xl font-extrabold capsize">COMMA CONNECT</div>
+					<div className="text-xl font-extrabold capsize mr-auto">
+						COMMA CONNECT
+					</div>
+					<div>
+						git details:
+						<br />
+						sha: {process.env.NEXT_PUBLIC_GIT_SHA}
+						<br />
+						remote: {process.env.NEXT_PUBLIC_GIT_REMOTE}
+						<br />
+						date:{" "}
+						<DisplayDate
+							// display as Oct 12, 2023
+							options={{ month: "short", day: "numeric", year: "numeric" }}
+						>
+							{process.env.NEXT_PUBLIC_GIT_DATE}
+						</DisplayDate>
+					</div>
 				</div>
 				<div>{children}</div>
 			</div>
